@@ -28,6 +28,7 @@ public class JavaFxBootApp extends Application {
     public void init() throws Exception {
         this.applicationContext = SpringApplication.run(getClass(), args);
         this.applicationContext.getAutowireCapableBeanFactory().autowireBean(this);
+
 //        Parent root;
 //        final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sample.fxml"));
 //        fxmlLoader.setControllerFactory(applicationContext::getBean);
@@ -37,14 +38,15 @@ public class JavaFxBootApp extends Application {
     @Override
     public void start(final Stage stage) {
         setUserAgentStylesheet(STYLESHEET_MODENA);
-
-        // TODO animation menu
-        // TODO Splash screen
-
         stage.setScene(new Scene(mainView.getView(), 1200, 1000));
         stage.show();
 
-        // TODO Preference
+        // TODO Menu shortcut
+        // TODO Preference (fix problem ioc)
+        // TODO add builder for all ControlfX (Inset)
+        // TODO add builder for all RichText
+        // TODO animation menu
+        // TODO Splash screen
 
 
     }

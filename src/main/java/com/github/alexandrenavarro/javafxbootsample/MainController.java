@@ -9,8 +9,12 @@ import com.github.alexandrenavarro.javafxbootsample.request.RequestView;
 import com.github.alexandrenavarro.javafxbootsample.scenario.ScenarioView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import lombok.extern.slf4j.Slf4j;
 import org.controlsfx.control.PropertySheet;
+import org.controlsfx.control.action.Action;
 import org.controlsfx.property.BeanProperty;
 import org.springframework.stereotype.Component;
 
@@ -79,6 +83,23 @@ public class MainController {
         }
         userPrefView.getPropertySheetRef().get().getItems().setAll(list);
         mainView.getGearLabelRef().get().setOnMouseClicked(e -> userPrefView.getView().show(mainView.getGearLabelRef().get()));
+
+        Action action = new Action(e -> {
+            mainView.getContentRef().get().getChildren().setAll(marketView.getView());
+        });
+        action.setAccelerator(new KeyCodeCombination(KeyCode.M, KeyCombination.CONTROL_DOWN));
+
+        this.mainView.getView()
+                .setOnKeyPressed(e -> {
+                    log.info("key pressed:{}", e);
+                });
+
+    }
+
+
+    @org.controlsfx.control.action.ActionProxy(text = "Action 1.1", accelerator = "ctrl+A")
+    private void action11() {
+        mainView.getContentRef().get().getChildren().setAll(marketView.getView());
     }
 
     private void showOrHideMenu() {
