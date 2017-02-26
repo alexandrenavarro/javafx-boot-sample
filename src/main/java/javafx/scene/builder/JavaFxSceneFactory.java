@@ -1,6 +1,5 @@
 package javafx.scene.builder;
 
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import net.karneim.pojobuilder.GeneratePojoBuilder;
@@ -11,8 +10,8 @@ import net.karneim.pojobuilder.GeneratePojoBuilder;
 public class JavaFxSceneFactory {
 
     @GeneratePojoBuilder(withSetterNamePattern = "*", intoPackage = "*.builder", withFactoryMethod = "create", withGenerationGap = true)
-    public static Scene createScene(final Parent parent) {
-        return new Scene(parent);
+    public static Scene createScene(final Parent parent, double width, double height) {
+        return new Scene(parent, width, height);
     }
 
 }

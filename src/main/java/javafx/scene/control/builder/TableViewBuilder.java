@@ -1,9 +1,13 @@
 package javafx.scene.control.builder;
 
 import com.github.alexandrenavarro.javafxbootsample.util.builder.Builder;
-import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+
 import javax.annotation.Generated;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * The {@link TableViewBuilder} is a Builder for {@link javafx.scene.control.TableView} objects.
@@ -32,4 +36,17 @@ public class TableViewBuilder<S> extends AbstractTableViewBuilder<S> implements 
    */
   public TableViewBuilder() {
   }
+
+    private List<TableColumn> tableColumnList = Collections.emptyList();
+
+    public TableView build() {
+        final TableView tableView = super.build();
+        tableView.getColumns().addAll(tableColumnList);
+        return tableView;
+    }
+
+    public TableViewBuilder columns(TableColumn... x) {
+        this.tableColumnList = Arrays.asList(x);
+        return this;
+    }
 }

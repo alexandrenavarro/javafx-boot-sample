@@ -7,8 +7,10 @@ public interface Builder<T> {
 
     T build();
 
-    default T buildTo(T arg) {
-        arg = build();
-        return arg;
+    //TODO add checker framework, must not be null
+    default T buildToRef(Ref<T> ref) {
+        final T t = build();
+        ref.set(t);
+        return t;
     }
 }

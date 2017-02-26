@@ -1,8 +1,8 @@
 package javafx.stage.builder;
 
 import com.github.alexandrenavarro.javafxbootsample.util.builder.Builder;
-import javafx.scene.web.HTMLEditor;
 import javafx.stage.FileChooser;
+
 import javax.annotation.Generated;
 
 /**
@@ -31,5 +31,6 @@ public class FileChooserBuilder extends AbstractFileChooserBuilder implements Bu
    * Creates a new {@link FileChooserBuilder}.
    */
   public FileChooserBuilder() {
+
   }
 }
