@@ -1,7 +1,5 @@
 package javafx.scene.control.builder;
 
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Builder;
-import javafx.scene.control.Button;
 import javax.annotation.Generated;
 
 /**
@@ -15,7 +13,7 @@ import javax.annotation.Generated;
  * </p>
  */
 @Generated("PojoBuilder")
-public class ButtonBuilder extends AbstractButtonBuilder implements Builder<Button> {
+public class ButtonBuilder extends AbstractButtonBuilder {
 
   /**
    * Factory Method to construct a ButtonBuilder

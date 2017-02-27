@@ -1,7 +1,5 @@
 package javafx.scene.control.builder;
 
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Builder;
-import javafx.scene.control.Tooltip;
 import javax.annotation.Generated;
 
 /**
@@ -15,7 +13,7 @@ import javax.annotation.Generated;
  * </p>
  */
 @Generated("PojoBuilder")
-public class TooltipBuilder extends AbstractTooltipBuilder implements Builder<Tooltip> {
+public class TooltipBuilder extends AbstractTooltipBuilder {
 
   /**
    * Factory Method to construct a TooltipBuilder

@@ -1,12 +1,12 @@
 package javafx.scene.control.builder;
 
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Builder;
-import javafx.scene.Scene;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.TitledPane;
 
 import javax.annotation.Generated;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * The {@link AccordionBuilder} is a Builder for {@link javafx.scene.control.Accordion} objects.
@@ -19,7 +19,7 @@ import java.util.*;
  * </p>
  */
 @Generated("PojoBuilder")
-public class AccordionBuilder extends AbstractAccordionBuilder implements Builder<Accordion> {
+public class AccordionBuilder extends AbstractAccordionBuilder {
 
   /**
    * Factory Method to construct a AccordionBuilder

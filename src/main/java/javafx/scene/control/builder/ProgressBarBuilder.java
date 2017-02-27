@@ -1,7 +1,5 @@
 package javafx.scene.control.builder;
 
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Builder;
-import javafx.scene.control.ProgressBar;
 import javax.annotation.Generated;
 
 /**
@@ -15,7 +13,7 @@ import javax.annotation.Generated;
  * </p>
  */
 @Generated("PojoBuilder")
-public class ProgressBarBuilder extends AbstractProgressBarBuilder implements Builder<ProgressBar> {
+public class ProgressBarBuilder extends AbstractProgressBarBuilder {
 
   /**
    * Factory Method to construct a ProgressBarBuilder

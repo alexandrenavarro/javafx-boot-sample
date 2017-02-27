@@ -25,7 +25,7 @@ public class MarketController {
 
     @PostConstruct
     public void initialize() {
-        this.marketView.getSearchButtonRef().get().setOnAction(e -> {
+        this.marketView.getSearchButton().setOnAction(e -> {
             search2();
         });
     }

@@ -1,6 +1,5 @@
 package javafx.scene.control.builder;
 
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Builder;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -20,7 +19,7 @@ import java.util.List;
  * </p>
  */
 @Generated("PojoBuilder")
-public class TableViewBuilder<S> extends AbstractTableViewBuilder<S> implements Builder<TableView<S>> {
+public class TableViewBuilder<S> extends AbstractTableViewBuilder<S> {
 
   /**
    * Factory Method to construct a TableViewBuilder<S>

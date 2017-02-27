@@ -1,8 +1,5 @@
 package javafx.scene.layout.builder;
 
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Builder;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javax.annotation.Generated;
 
 /**
@@ -16,7 +13,7 @@ import javax.annotation.Generated;
  * </p>
  */
 @Generated("PojoBuilder")
-public class PaneBuilder extends AbstractPaneBuilder implements Builder<Pane> {
+public class PaneBuilder extends AbstractPaneBuilder {
 
   /**
    * Factory Method to construct a PaneBuilder

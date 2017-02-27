@@ -1,8 +1,5 @@
 package javafx.scene.layout.builder;
 
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Builder;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Region;
 import javax.annotation.Generated;
 
 /**
@@ -16,7 +13,7 @@ import javax.annotation.Generated;
  * </p>
  */
 @Generated("PojoBuilder")
-public class RegionBuilder extends AbstractRegionBuilder implements Builder<Region> {
+public class RegionBuilder extends AbstractRegionBuilder {
 
   /**
    * Factory Method to construct a RegionBuilder

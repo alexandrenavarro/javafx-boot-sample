@@ -1,8 +1,5 @@
 package org.controlsfx.control.builder;
 
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Builder;
-import org.controlsfx.control.PopOver;
-
 import javax.annotation.Generated;
 
 /**
@@ -16,7 +13,7 @@ import javax.annotation.Generated;
  * </p>
  */
 @Generated("PojoBuilder")
-public class PopOverBuilder extends AbstractPopOverBuilder implements Builder<PopOver> {
+public class PopOverBuilder extends AbstractPopOverBuilder {
 
     /**
      * Factory Method to construct a PopOverBuilder

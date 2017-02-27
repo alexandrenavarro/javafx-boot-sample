@@ -1,8 +1,5 @@
 package javafx.scene.control.builder;
 
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Builder;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.MenuButton;
 import javax.annotation.Generated;
 
 /**
@@ -16,7 +13,7 @@ import javax.annotation.Generated;
  * </p>
  */
 @Generated("PojoBuilder")
-public class MenuButtonBuilder extends AbstractMenuButtonBuilder implements Builder<MenuButton> {
+public class MenuButtonBuilder extends AbstractMenuButtonBuilder {
 
   /**
    * Factory Method to construct a MenuButtonBuilder

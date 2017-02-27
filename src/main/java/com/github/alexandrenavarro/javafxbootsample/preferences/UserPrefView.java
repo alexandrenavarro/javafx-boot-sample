@@ -1,6 +1,5 @@
 package com.github.alexandrenavarro.javafxbootsample.preferences;
 
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Ref;
 import lombok.Getter;
 import org.controlsfx.control.PopOver;
 import org.controlsfx.control.PropertySheet;
@@ -18,11 +17,11 @@ public class UserPrefView {
     private final PopOver view;
 
     @Getter
-    private final Ref<PropertySheet> propertySheetRef = Ref.create();
+    private final PropertySheet propertySheet = PropertySheetBuilder.create().build();
 
     public UserPrefView() {
         view = PopOverBuilder.create()
-                .contentNode(PropertySheetBuilder.create().buildToRef(propertySheetRef))
+                .contentNode(propertySheet)
                 .arrowLocation(PopOver.ArrowLocation.RIGHT_TOP)
                 .build();
 

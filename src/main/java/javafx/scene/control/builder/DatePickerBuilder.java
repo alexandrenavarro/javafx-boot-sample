@@ -1,8 +1,5 @@
 package javafx.scene.control.builder;
 
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Builder;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.DatePicker;
 import javax.annotation.Generated;
 
 /**
@@ -16,7 +13,7 @@ import javax.annotation.Generated;
  * </p>
  */
 @Generated("PojoBuilder")
-public class DatePickerBuilder extends AbstractDatePickerBuilder implements Builder<DatePicker> {
+public class DatePickerBuilder extends AbstractDatePickerBuilder {
 
   /**
    * Factory Method to construct a DatePickerBuilder

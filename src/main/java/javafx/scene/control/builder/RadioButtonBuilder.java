@@ -1,7 +1,5 @@
 package javafx.scene.control.builder;
 
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Builder;
-import javafx.scene.control.RadioButton;
 import javax.annotation.Generated;
 
 /**
@@ -15,7 +13,7 @@ import javax.annotation.Generated;
  * </p>
  */
 @Generated("PojoBuilder")
-public class RadioButtonBuilder extends AbstractRadioButtonBuilder implements Builder<RadioButton> {
+public class RadioButtonBuilder extends AbstractRadioButtonBuilder {
 
   /**
    * Factory Method to construct a RadioButtonBuilder

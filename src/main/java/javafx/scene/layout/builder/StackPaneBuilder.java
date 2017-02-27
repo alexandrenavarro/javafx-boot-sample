@@ -1,6 +1,5 @@
 package javafx.scene.layout.builder;
 
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Builder;
 import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
 
@@ -20,7 +19,7 @@ import java.util.List;
  * </p>
  */
 @Generated("PojoBuilder")
-public class StackPaneBuilder extends AbstractStackPaneBuilder implements Builder<StackPane> {
+public class StackPaneBuilder extends AbstractStackPaneBuilder {
 
     /**
      * Factory Method to construct a StackPaneBuilder

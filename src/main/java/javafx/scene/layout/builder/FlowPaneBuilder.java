@@ -1,8 +1,5 @@
 package javafx.scene.layout.builder;
 
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Builder;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.FlowPane;
 import javax.annotation.Generated;
 
 /**
@@ -16,7 +13,7 @@ import javax.annotation.Generated;
  * </p>
  */
 @Generated("PojoBuilder")
-public class FlowPaneBuilder extends AbstractFlowPaneBuilder implements Builder<FlowPane> {
+public class FlowPaneBuilder extends AbstractFlowPaneBuilder {
 
   /**
    * Factory Method to construct a FlowPaneBuilder

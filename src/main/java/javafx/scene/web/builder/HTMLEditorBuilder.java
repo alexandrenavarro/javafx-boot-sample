@@ -1,9 +1,5 @@
 package javafx.scene.web.builder;
 
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Builder;
-import javafx.scene.web.HTMLEditor;
-import org.controlsfx.control.StatusBar;
-
 import javax.annotation.Generated;
 
 /**
@@ -17,7 +13,7 @@ import javax.annotation.Generated;
  * </p>
  */
 @Generated("PojoBuilder")
-public class HTMLEditorBuilder extends AbstractHTMLEditorBuilder implements Builder<HTMLEditor> {
+public class HTMLEditorBuilder extends AbstractHTMLEditorBuilder {
 
   /**
    * Factory Method to construct a HTMLEditorBuilder

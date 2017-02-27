@@ -1,8 +1,5 @@
 package org.controlsfx.control.builder;
 
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Builder;
-import org.controlsfx.control.MaskerPane;
-
 import javax.annotation.Generated;
 
 /**
@@ -16,7 +13,7 @@ import javax.annotation.Generated;
  * </p>
  */
 @Generated("PojoBuilder")
-public class MaskerPaneBuilder extends AbstractMaskerPaneBuilder implements Builder<MaskerPane> {
+public class MaskerPaneBuilder extends AbstractMaskerPaneBuilder {
 
     /**
      * Factory Method to construct a MaskerPaneBuilder

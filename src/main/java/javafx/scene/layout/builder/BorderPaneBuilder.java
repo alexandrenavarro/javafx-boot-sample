@@ -1,8 +1,5 @@
 package javafx.scene.layout.builder;
 
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Builder;
-import javafx.scene.control.TitledPane;
-import javafx.scene.layout.BorderPane;
 import javax.annotation.Generated;
 
 /**
@@ -16,7 +13,7 @@ import javax.annotation.Generated;
  * </p>
  */
 @Generated("PojoBuilder")
-public class BorderPaneBuilder extends AbstractBorderPaneBuilder implements Builder<BorderPane> {
+public class BorderPaneBuilder extends AbstractBorderPaneBuilder {
 
   /**
    * Factory Method to construct a BorderPaneBuilder

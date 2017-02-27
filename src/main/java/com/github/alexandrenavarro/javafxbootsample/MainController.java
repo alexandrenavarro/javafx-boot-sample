@@ -54,25 +54,25 @@ public class MainController {
         // Init click on memu
 
         //TODO improve to render impossible to have no at least one menu expanded
-        this.mainView.getMenuAccordionRef().get().setExpandedPane(this.mainView.getMenuAccordionRef().get().getPanes().get(0));
+        this.mainView.getMenuAccordion().setExpandedPane(this.mainView.getMenuAccordion().getPanes().get(0));
 
         //TODO improve it with a animation
-        this.mainView.getHamburgerLabelRef().get().setOnMouseClicked(e -> showOrHideMenu());
+        this.mainView.getHamburgerLabel().setOnMouseClicked(e -> showOrHideMenu());
 
-        this.mainView.getFindMarketHyperlinkRef().get().setOnMouseClicked(e -> {
-            mainView.getContentRef().get().getChildren().setAll(marketView.getView());
+        this.mainView.getFindMarketHyperlink().setOnMouseClicked(e -> {
+            mainView.getContent().getChildren().setAll(marketView.getView());
         });
 
-        this.mainView.getFindUnderlyingHyperlinkRef().get().setOnMouseClicked(e -> {
-            mainView.getContentRef().get().getChildren().setAll(underlyingView.getView());
+        this.mainView.getFindUnderlyingHyperlink().setOnMouseClicked(e -> {
+            mainView.getContent().getChildren().setAll(underlyingView.getView());
         });
 
-        this.mainView.getLoadScenarioHyperlinkRef().get().setOnMouseClicked(e -> {
-            mainView.getContentRef().get().getChildren().setAll(scenarioView.getView());
+        this.mainView.getLoadScenarioHyperlink().setOnMouseClicked(e -> {
+            mainView.getContent().getChildren().setAll(scenarioView.getView());
         });
 
-        this.mainView.getFindRequestHyperlinkRef().get().setOnMouseClicked(e -> {
-            mainView.getContentRef().get().getChildren().setAll(requestView.getView());
+        this.mainView.getFindRequestHyperlink().setOnMouseClicked(e -> {
+            mainView.getContent().getChildren().setAll(requestView.getView());
         });
 
         // Init Pref
@@ -81,11 +81,11 @@ public class MainController {
         for (final PropertyDescriptor p : beanInfo.getPropertyDescriptors()) {
             list.add(new BeanProperty(userPref, p));
         }
-        userPrefView.getPropertySheetRef().get().getItems().setAll(list);
-        mainView.getGearLabelRef().get().setOnMouseClicked(e -> userPrefView.getView().show(mainView.getGearLabelRef().get()));
+        userPrefView.getPropertySheet().getItems().setAll(list);
+        mainView.getGearLabel().setOnMouseClicked(e -> userPrefView.getView().show(mainView.getGearLabel()));
 
         Action action = new Action(e -> {
-            mainView.getContentRef().get().getChildren().setAll(marketView.getView());
+            mainView.getContent().getChildren().setAll(marketView.getView());
         });
         action.setAccelerator(new KeyCodeCombination(KeyCode.M, KeyCombination.CONTROL_DOWN));
 
@@ -99,16 +99,16 @@ public class MainController {
 
     @org.controlsfx.control.action.ActionProxy(text = "Action 1.1", accelerator = "ctrl+A")
     private void action11() {
-        mainView.getContentRef().get().getChildren().setAll(marketView.getView());
+        mainView.getContent().getChildren().setAll(marketView.getView());
     }
 
     private void showOrHideMenu() {
-        if (this.mainView.getMenuAccordionRef().get().isVisible()) {
-            mainView.getMenuAccordionRef().get().setVisible(false);
+        if (this.mainView.getMenuAccordion().isVisible()) {
+            mainView.getMenuAccordion().setVisible(false);
             mainView.getView().setLeft(null);
         } else {
-            mainView.getMenuAccordionRef().get().setVisible(true);
-            mainView.getView().setLeft(mainView.getMenuAccordionRef().get());
+            mainView.getMenuAccordion().setVisible(true);
+            mainView.getView().setLeft(mainView.getMenuAccordion());
         }
     }
 

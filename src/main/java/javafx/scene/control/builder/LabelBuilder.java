@@ -1,8 +1,5 @@
 package javafx.scene.control.builder;
 
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Builder;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.Label;
 import javax.annotation.Generated;
 
 /**
@@ -16,7 +13,7 @@ import javax.annotation.Generated;
  * </p>
  */
 @Generated("PojoBuilder")
-public class LabelBuilder extends AbstractLabelBuilder implements Builder<Label> {
+public class LabelBuilder extends AbstractLabelBuilder {
 
   /**
    * Factory Method to construct a LabelBuilder

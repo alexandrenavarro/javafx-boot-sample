@@ -1,10 +1,7 @@
 package javafx.scene.layout.builder;
 
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Builder;
 import javafx.scene.Node;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
 import javax.annotation.Generated;
 import java.util.Arrays;
@@ -22,7 +19,7 @@ import java.util.List;
  * </p>
  */
 @Generated("PojoBuilder")
-public class HBoxBuilder extends AbstractHBoxBuilder implements Builder<HBox>  {
+public class HBoxBuilder extends AbstractHBoxBuilder {
 
   /**
    * Factory Method to construct a HBoxBuilder

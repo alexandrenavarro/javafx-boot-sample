@@ -1,7 +1,5 @@
 package com.github.alexandrenavarro.javafxbootsample.referential;
 
-import com.github.alexandrenavarro.javafxbootsample.View;
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Ref;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
@@ -18,26 +16,17 @@ import org.springframework.stereotype.Component;
  * Created by anavarro on 26/02/17.
  */
 @Component
-public class MarketView implements View {
+public class MarketView {
 
     @Getter
     private final Node view;
 
     @Getter
-    private Ref<MaskerPane> maskerPaneRef = Ref.create();
-    @Getter
-    private Ref<Button> searchButtonRef = Ref.create();
-    @Getter
-    private Ref<TableView<Object>> tableViewRef = Ref.create();
+    private final Button searchButton = ButtonBuilder.create()
+            .text("Search").build();
 
-    public MarketView() {
-        this.view = VBoxBuilder.create()
-                .children(
-                        ButtonBuilder.create()
-                                .text("Search").buildToRef(searchButtonRef),
-                        StackPaneBuilder.create()
-                                .children(
-                                        TableViewBuilder.create()
+    @Getter
+    private final TableView tableView = TableViewBuilder.create()
 //                                                        .columns(
 //                                                                TableColumnBuilder.create()
 //                                                                        .text("name")
@@ -48,8 +37,19 @@ public class MarketView implements View {
 //                                                                TableColumnBuilder.create()
 //                                                                        .text("Label")
 //                                                                        .cellValueFactory(new PropertyValueFactory<>("label")).build())
-                                                .buildToRef(tableViewRef),
-                                        MaskerPaneBuilder.create().visible(false).buildToRef(maskerPaneRef))
+            .build();
+
+    @Getter
+    private final MaskerPane maskerPane = MaskerPaneBuilder.create().visible(false).build();
+
+    public MarketView() {
+        this.view = VBoxBuilder.create()
+                .children(
+                        searchButton,
+                        StackPaneBuilder.create()
+                                .children(
+                                        tableView,
+                                        maskerPane)
                                 .build()
                 ).build();
     }

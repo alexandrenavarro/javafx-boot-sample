@@ -1,8 +1,5 @@
 package javafx.scene.control.builder;
 
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Builder;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleButton;
 import javax.annotation.Generated;
 
 /**
@@ -16,7 +13,7 @@ import javax.annotation.Generated;
  * </p>
  */
 @Generated("PojoBuilder")
-public class ToggleButtonBuilder extends AbstractToggleButtonBuilder implements Builder<ToggleButton> {
+public class ToggleButtonBuilder extends AbstractToggleButtonBuilder {
 
   /**
    * Factory Method to construct a ToggleButtonBuilder

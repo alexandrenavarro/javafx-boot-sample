@@ -1,8 +1,5 @@
 package javafx.scene.control.builder;
 
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Builder;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.ListView;
 import javax.annotation.Generated;
 
 /**
@@ -16,7 +13,7 @@ import javax.annotation.Generated;
  * </p>
  */
 @Generated("PojoBuilder")
-public class ListViewBuilder<T> extends AbstractListViewBuilder<T> implements Builder<ListView<T>> {
+public class ListViewBuilder<T> extends AbstractListViewBuilder<T> {
 
   /**
    * Factory Method to construct a ListViewBuilder<T>

@@ -1,8 +1,5 @@
 package javafx.scene.layout.builder;
 
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Builder;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.ColumnConstraints;
 import javax.annotation.Generated;
 
 /**
@@ -16,7 +13,7 @@ import javax.annotation.Generated;
  * </p>
  */
 @Generated("PojoBuilder")
-public class ColumnConstraintsBuilder extends AbstractColumnConstraintsBuilder implements Builder<ColumnConstraints> {
+public class ColumnConstraintsBuilder extends AbstractColumnConstraintsBuilder {
 
   /**
    * Factory Method to construct a ColumnConstraintsBuilder

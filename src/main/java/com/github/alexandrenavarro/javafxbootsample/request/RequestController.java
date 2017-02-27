@@ -2,6 +2,8 @@ package com.github.alexandrenavarro.javafxbootsample.request;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.alexandrenavarro.javafxbootsample.preferences.UserPref;
+import de.felixroske.jfxsupport.FXMLController;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.utils.FontAwesomeIconFactory;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -10,46 +12,41 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 import org.controlsfx.control.textfield.CustomTextField;
 import org.controlsfx.glyphfont.GlyphFont;
 import org.controlsfx.glyphfont.GlyphFontRegistry;
-import org.springframework.stereotype.Component;
 
+import javax.inject.Inject;
 import java.io.File;
 import java.text.DateFormat;
 import java.text.NumberFormat;
-import java.util.*;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.UUID;
 
 
-@Component
+@FXMLController
 public class RequestController {
 
+    @Inject
+    UserPref userPref;
 
-    private final RequestView requestView;
-//	@Inject
-//	UserPref userPref;
+    @FXML
+    CustomTextField idTextField;
 
-    //@FXML
-    private CustomTextField idTextField;
+    @FXML
+    TreeTableView<JsonNode> treeTableView;
 
-    //@FXML
-    private TreeTableView<JsonNode> treeTableView;
-
-    //@FXML
-    //ScrollPane scrollPane;
+    @FXML
+    ScrollPane scrollPane;
     private GlyphFont fontAwesome = GlyphFontRegistry.font("FontAwesome");
 
-
-    public RequestController(final RequestView requestView) {
-        this.requestView = requestView;
-        this.treeTableView = requestView.getTreeTableViewRef().get();
-        this.idTextField = requestView.getCustomTextFieldRef().get();
-    }
-
-    //@FXML
+    @FXML
     public void initialize() {
         // final Glyph value =
         // fontAwesome.create(FontAwesome.Glyph.SEARCH).color(Color.LIGHTGRAY);
@@ -77,12 +74,8 @@ public class RequestController {
         // treeTableView.setRoot(TreeItem);
         // treeTableColumn.set
         // treeTableView.setTreeColumn();
-
-
-        //scrollPane.setContent(buildJsonTreeTableView());
+        scrollPane.setContent(buildJsonTreeTableView());
         // scrollPane.setContent(buildFileBrowserTreeTableView());
-
-        treeTableView = buildJsonTreeTableView();
 
     }
 
@@ -94,16 +87,13 @@ public class RequestController {
     }
 
     private TreeTableView buildJsonTreeTableView() {
-        //TODO Adapt with real Request
-//		Set<Leg> legs = new TreeSet<>(Arrays.asList(Leg.builder().id(1).qty(10.0).way('B')
-//				.product(Product.builder().underlyingId("SG").build()).build()));
-//		Request req = Request.builder().bizId(123).uuid(UUID.randomUUID())
-//				.salesName("foo").counterPart("Foo")
-//				.legs(legs)
-//				.build();
-
-        Map<String, String> request = new HashMap<>();
-        final JsonNode pathItem = new ObjectMapper().valueToTree(request);
+//        Set<Leg> legs = new TreeSet<>(Arrays.asList(Leg.builder().id(1).qty(10.0).way('B')
+//                .product(Product.builder().underlyingId("SG").build()).build()));
+//        Request req = Request.builder().bizId(123).uuid(UUID.randomUUID())
+//                .salesName("foo").counterPart("Foo")
+//                .legs(legs)
+//                .build();
+        final JsonNode pathItem = new ObjectMapper().valueToTree(new HashMap());
         JsonNodeTreeItem root = JsonNodeTreeItem.createNode(pathItem);
 
         final TreeTableView<JsonNode> treeTableView = new TreeTableView<>();

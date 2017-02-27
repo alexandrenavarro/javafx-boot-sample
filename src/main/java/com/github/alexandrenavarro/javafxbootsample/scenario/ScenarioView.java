@@ -1,6 +1,5 @@
 package com.github.alexandrenavarro.javafxbootsample.scenario;
 
-import com.github.alexandrenavarro.javafxbootsample.View;
 import org.fxmisc.richtext.CodeArea;
 import org.springframework.stereotype.Component;
 
@@ -8,7 +7,7 @@ import org.springframework.stereotype.Component;
  * Created by anavarro on 26/02/17.
  */
 @Component
-public class ScenarioView implements View {
+public class ScenarioView {
 
     private final CodeArea codeArea = new CodeArea();
 
@@ -16,7 +15,6 @@ public class ScenarioView implements View {
     }
 
 
-    @Override
     public CodeArea getView() {
         return codeArea;
     }

@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Configuration;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -38,17 +37,17 @@ public class JavaFxConfig {
     UserPref userPref(ObjectMapper mapper) {
         File f = new File(outputFileName);
         UserPref pref = null;
-        if (f.exists()) {
-            FileInputStream inputStream = null;
-            try {
-                inputStream = new FileInputStream(outputFileName);
-                pref = mapper.readValue(inputStream, UserPref.class);
-                log.info("Read from: {}, userPref: ", outputFileName, pref);
-                return pref;
-            } catch (IOException e) {
-                log.error("Failed to load user pref", e);
-            }
-        }
+//        if (f.exists()) {
+//            FileInputStream inputStream = null;
+//            try {
+//                inputStream = new FileInputStream(outputFileName);
+//                pref = mapper.readValue(inputStream, UserPref.class);
+//                log.info("Read from: {}, userPref: ", outputFileName, pref);
+//                return pref;
+//            } catch (IOException e) {
+//                log.error("Failed to load user pref", e);
+//            }
+//        }
 
         pref = new UserPref();
         return pref;

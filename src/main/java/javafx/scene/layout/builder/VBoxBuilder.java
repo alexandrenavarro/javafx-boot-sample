@@ -1,9 +1,8 @@
 package javafx.scene.layout.builder;
 
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Builder;
 import javafx.scene.Node;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
 import javax.annotation.Generated;
 import java.util.Arrays;
 import java.util.Collections;
@@ -20,7 +19,7 @@ import java.util.List;
  * </p>
  */
 @Generated("PojoBuilder")
-public class VBoxBuilder extends AbstractVBoxBuilder implements Builder<VBox>  {
+public class VBoxBuilder extends AbstractVBoxBuilder {
 
   /**
    * Factory Method to construct a VBoxBuilder

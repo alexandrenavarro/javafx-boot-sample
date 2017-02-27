@@ -1,8 +1,5 @@
 package javafx.stage.builder;
 
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Builder;
-import javafx.stage.FileChooser;
-
 import javax.annotation.Generated;
 
 /**
@@ -16,7 +13,7 @@ import javax.annotation.Generated;
  * </p>
  */
 @Generated("PojoBuilder")
-public class FileChooserBuilder extends AbstractFileChooserBuilder implements Builder<FileChooser> {
+public class FileChooserBuilder extends AbstractFileChooserBuilder {
 
   /**
    * Factory Method to construct a FileChooserBuilder

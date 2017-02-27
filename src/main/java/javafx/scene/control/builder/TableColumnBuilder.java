@@ -1,8 +1,5 @@
 package javafx.scene.control.builder;
 
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Builder;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TableColumn;
 import javax.annotation.Generated;
 
 /**
@@ -16,7 +13,7 @@ import javax.annotation.Generated;
  * </p>
  */
 @Generated("PojoBuilder")
-public class TableColumnBuilder<S, T> extends AbstractTableColumnBuilder<S, T> implements Builder<TableColumn<S, T>> {
+public class TableColumnBuilder<S, T> extends AbstractTableColumnBuilder<S, T> {
 
   /**
    * Factory Method to construct a TableColumnBuilder<S, T>

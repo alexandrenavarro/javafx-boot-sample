@@ -8,8 +8,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import javax.inject.Inject;
-
 /**
  * Created by anavarro on 25/02/17.
  */
@@ -21,24 +19,15 @@ public class JavaFxBootApp extends Application {
     private ConfigurableApplicationContext applicationContext;
     private static String[] args;
 
-    @Inject
-    private MainView mainView;
-
     @Override
     public void init() throws Exception {
         this.applicationContext = SpringApplication.run(getClass(), args);
-        this.applicationContext.getAutowireCapableBeanFactory().autowireBean(this);
-
-//        Parent root;
-//        final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sample.fxml"));
-//        fxmlLoader.setControllerFactory(applicationContext::getBean);
-//        root = fxmlLoader.load();
     }
 
     @Override
     public void start(final Stage stage) {
         setUserAgentStylesheet(STYLESHEET_MODENA);
-        stage.setScene(new Scene(mainView.getView(), 1200, 1000));
+        stage.setScene(new Scene(this.applicationContext.getBean(MainView.class).getView(), 1200, 1000));
         stage.show();
 
         // TODO Menu shortcut
@@ -47,7 +36,6 @@ public class JavaFxBootApp extends Application {
         // TODO add builder for all RichText
         // TODO animation menu
         // TODO Splash screen
-
 
     }
 
@@ -59,6 +47,7 @@ public class JavaFxBootApp extends Application {
 
     public static void main(String[] anArgs) {
         args = anArgs;
-        launch(args);
+        launch(anArgs);
     }
+
 }

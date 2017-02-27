@@ -1,8 +1,5 @@
 package javafx.scene.control.builder;
 
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Builder;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
 import javax.annotation.Generated;
 
 /**
@@ -16,7 +13,7 @@ import javax.annotation.Generated;
  * </p>
  */
 @Generated("PojoBuilder")
-public class TextFieldBuilder extends AbstractTextFieldBuilder implements Builder<TextField> {
+public class TextFieldBuilder extends AbstractTextFieldBuilder {
 
   /**
    * Factory Method to construct a TextFieldBuilder

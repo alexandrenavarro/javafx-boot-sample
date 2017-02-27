@@ -1,8 +1,5 @@
 package javafx.scene.layout.builder;
 
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Builder;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.TilePane;
 import javax.annotation.Generated;
 
 /**
@@ -16,7 +13,7 @@ import javax.annotation.Generated;
  * </p>
  */
 @Generated("PojoBuilder")
-public class TilePaneBuilder extends AbstractTilePaneBuilder implements Builder<TilePane> {
+public class TilePaneBuilder extends AbstractTilePaneBuilder {
 
   /**
    * Factory Method to construct a TilePaneBuilder

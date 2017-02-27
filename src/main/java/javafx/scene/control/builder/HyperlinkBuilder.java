@@ -1,8 +1,5 @@
 package javafx.scene.control.builder;
 
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Builder;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.Hyperlink;
 import javax.annotation.Generated;
 
 /**
@@ -16,7 +13,7 @@ import javax.annotation.Generated;
  * </p>
  */
 @Generated("PojoBuilder")
-public class HyperlinkBuilder extends AbstractHyperlinkBuilder implements Builder<Hyperlink> {
+public class HyperlinkBuilder extends AbstractHyperlinkBuilder {
 
   /**
    * Factory Method to construct a HyperlinkBuilder

@@ -1,8 +1,5 @@
 package javafx.scene.control.builder;
 
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Builder;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ColorPicker;
 import javax.annotation.Generated;
 
 /**
@@ -16,7 +13,7 @@ import javax.annotation.Generated;
  * </p>
  */
 @Generated("PojoBuilder")
-public class ColorPickerBuilder extends AbstractColorPickerBuilder implements Builder<ColorPicker> {
+public class ColorPickerBuilder extends AbstractColorPickerBuilder {
 
   /**
    * Factory Method to construct a ColorPickerBuilder

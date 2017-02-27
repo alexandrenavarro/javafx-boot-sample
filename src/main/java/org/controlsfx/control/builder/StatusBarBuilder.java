@@ -1,6 +1,5 @@
 package org.controlsfx.control.builder;
 
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Builder;
 import javafx.scene.Node;
 import org.controlsfx.control.StatusBar;
 
@@ -20,7 +19,7 @@ import java.util.List;
  * </p>
  */
 @Generated("PojoBuilder")
-public class StatusBarBuilder extends AbstractStatusBarBuilder implements Builder<StatusBar> {
+public class StatusBarBuilder extends AbstractStatusBarBuilder {
 
   /**
    * Factory Method to construct a StatusBarBuilder

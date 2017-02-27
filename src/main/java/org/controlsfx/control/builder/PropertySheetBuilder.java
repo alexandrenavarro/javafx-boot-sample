@@ -1,8 +1,5 @@
 package org.controlsfx.control.builder;
 
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Builder;
-import org.controlsfx.control.PropertySheet;
-
 import javax.annotation.Generated;
 
 /**
@@ -16,7 +13,7 @@ import javax.annotation.Generated;
  * </p>
  */
 @Generated("PojoBuilder")
-public class PropertySheetBuilder extends AbstractPropertySheetBuilder implements Builder<PropertySheet> {
+public class PropertySheetBuilder extends AbstractPropertySheetBuilder {
 
     /**
      * Factory Method to construct a PropertySheetBuilder

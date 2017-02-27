@@ -1,9 +1,5 @@
 package javafx.scene.control.builder;
 
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Builder;
-import javafx.scene.control.CheckBox;
-import javafx.scene.web.HTMLEditor;
-
 import javax.annotation.Generated;
 
 /**
@@ -17,7 +13,7 @@ import javax.annotation.Generated;
  * </p>
  */
 @Generated("PojoBuilder")
-public class CheckBoxBuilder extends AbstractCheckBoxBuilder implements Builder<CheckBox> {
+public class CheckBoxBuilder extends AbstractCheckBoxBuilder {
 
   /**
    * Factory Method to construct a CheckBoxBuilder

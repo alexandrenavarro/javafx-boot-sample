@@ -1,8 +1,5 @@
 package javafx.scene.control.builder;
 
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Builder;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ScrollPane;
 import javax.annotation.Generated;
 
 /**
@@ -16,7 +13,7 @@ import javax.annotation.Generated;
  * </p>
  */
 @Generated("PojoBuilder")
-public class ScrollPaneBuilder extends AbstractScrollPaneBuilder implements Builder<ScrollPane> {
+public class ScrollPaneBuilder extends AbstractScrollPaneBuilder {
 
   /**
    * Factory Method to construct a ScrollPaneBuilder

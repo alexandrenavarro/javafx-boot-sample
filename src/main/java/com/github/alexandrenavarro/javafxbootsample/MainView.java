@@ -1,7 +1,6 @@
 package com.github.alexandrenavarro.javafxbootsample;
 
 import com.github.alexandrenavarro.javafxbootsample.statusbar.BottomStatusBarView;
-import com.github.alexandrenavarro.javafxbootsample.util.builder.Ref;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.utils.FontAwesomeIconFactory;
 import javafx.scene.control.Accordion;
@@ -26,81 +25,86 @@ import javax.inject.Inject;
  * Created by anavarro on 25/02/17.
  */
 @Component
-public class MainView implements View {
+public class MainView {
 
     @Getter
     private final BorderPane view;
     @Getter
     private final BottomStatusBarView bottomStatusBarView;
 
+
     @Getter
-    private Ref<Accordion> menuAccordionRef = Ref.create();
+    private final Label hamburgerLabel = LabelBuilder.create()
+            .id("hamburgerLabelReference")
+            .graphic(FontAwesomeIconFactory.get().createIcon(FontAwesomeIcon.BARS))
+            .build();
     @Getter
-    private Ref<Label> gearLabelRef = Ref.create();
+    private final Label gearLabel = LabelBuilder.create()
+            .graphic(FontAwesomeIconFactory.get().createIcon(FontAwesomeIcon.GEARS))
+            .build();
+
     @Getter
-    private Ref<Label> hamburgerLabelRef = Ref.create();
+    private final StackPane content = StackPaneBuilder.create().build();
+
     @Getter
-    private Ref<Hyperlink> findUnderlyingHyperlinkRef = Ref.create();
+    private final Hyperlink findUnderlyingHyperlink = HyperlinkBuilder.create()
+            .text("Find Underlying")
+            .build();
     @Getter
-    private Ref<Hyperlink> findMarketHyperlinkRef = Ref.create();
+    private final Hyperlink findOptionMaturitiesHyperlink = HyperlinkBuilder.create()
+            .text("Find Option Maturities")
+            .build();
     @Getter
-    private Ref<Hyperlink> findOptionMaturitiesHyperlinkRef = Ref.create();
+    private final Hyperlink findMarketHyperlink = HyperlinkBuilder.create()
+            .text("Find Market")
+            .build();
     @Getter
-    private Ref<Hyperlink> findRequestHyperlinkRef = Ref.create();
+    private final Hyperlink findRequestHyperlink = HyperlinkBuilder.create()
+            .text("Find Request")
+            .build();
+
     @Getter
-    private Ref<Hyperlink> loadScenarioHyperlinkRef = Ref.create();
+    private final Hyperlink loadScenarioHyperlink = HyperlinkBuilder.create()
+            .text("Load Scenario")
+            .build();
+
     @Getter
-    private Ref<StackPane> contentRef = Ref.create();
+    private final Accordion menuAccordion;
 
     @Inject
     public MainView(final BottomStatusBarView bottomStatusBarView) {
         this.bottomStatusBarView = bottomStatusBarView;
-        this.view = BorderPaneBuilder.create()
-                .left(AccordionBuilder.create()
-                        .panes(
-                                TitledPaneBuilder.create()
-                                        .id("b")
-                                        .text("Referential")
-                                        .content(VBoxBuilder.create()
-                                                .children(
-                                                        HyperlinkBuilder.create()
-                                                                .text("Find Underlying")
-                                                                .buildToRef(findUnderlyingHyperlinkRef),
-                                                        HyperlinkBuilder.create()
-                                                                .text("Find Option Maturities")
-                                                                .buildToRef(findOptionMaturitiesHyperlinkRef),
-                                                        HyperlinkBuilder.create()
-                                                                .text("Find Market")
-                                                                .buildToRef(findMarketHyperlinkRef))
-                                                .build())
-                                        .build(),
-                                TitledPaneBuilder.create()
-                                        .text("Request")
-                                        .content(VBoxBuilder.create()
-                                                .children(
-                                                        HyperlinkBuilder.create()
-                                                                .text("Find Request")
-                                                                .buildToRef(findRequestHyperlinkRef))
-                                                .build())
-                                        .build(),
-                                TitledPaneBuilder.create()
-                                        .text("Scenario")
-                                        .content(VBoxBuilder.create()
-                                                .children(
-                                                        HyperlinkBuilder.create()
-                                                                .text("Load Scenario")
-                                                                .buildToRef(loadScenarioHyperlinkRef))
-                                                .build())
+        this.menuAccordion = AccordionBuilder.create()
+                .panes(
+                        TitledPaneBuilder.create()
+                                .text("Referential")
+                                .content(VBoxBuilder.create()
+                                        .children(
+                                                findUnderlyingHyperlink,
+                                                findOptionMaturitiesHyperlink,
+                                                findMarketHyperlink)
                                         .build())
-                        .buildToRef(menuAccordionRef))
+                                .build(),
+                        TitledPaneBuilder.create()
+                                .text("Request")
+                                .content(VBoxBuilder.create()
+                                        .children(
+                                                findRequestHyperlink)
+                                        .build())
+                                .build(),
+                        TitledPaneBuilder.create()
+                                .text("Scenario")
+                                .content(VBoxBuilder.create()
+                                        .children(
+                                                loadScenarioHyperlink)
+                                        .build())
+                                .build())
+                .build();
+        this.view = BorderPaneBuilder.create()
+                .left(menuAccordion)
                 .top(StatusBarBuilder.create()
-                        .leftItems(LabelBuilder.create()
-                                .id("hamburgerLabelReference")
-                                .graphic(FontAwesomeIconFactory.get().createIcon(FontAwesomeIcon.BARS))
-                                .buildToRef(hamburgerLabelRef))
-                        .rightItems(LabelBuilder.create()
-                                .graphic(FontAwesomeIconFactory.get().createIcon(FontAwesomeIcon.GEARS))
-                                .buildToRef(gearLabelRef))
+                        .leftItems(hamburgerLabel)
+                        .rightItems(gearLabel)
                         .text("")
                         .build())
                 .bottom(bottomStatusBarView.getView())
@@ -108,7 +112,7 @@ public class MainView implements View {
                         .collapsible(false)
                         .text("")
                         .maxHeight(Double.MAX_VALUE)
-                        .content(StackPaneBuilder.create().buildToRef(contentRef))
+                        .content(content)
                         .build())
                 .build();
     }
