@@ -18,7 +18,6 @@ public class ControlFxFactory {
         return new StatusBar();
     }
 
-
     @GeneratePojoBuilder(withSetterNamePattern = "*", intoPackage = "*.builder", withFactoryMethod = "create", withGenerationGap = true)
     public static MaskerPane createMaskerPane() {
         return new MaskerPane();

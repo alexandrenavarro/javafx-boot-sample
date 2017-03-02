@@ -1,11 +1,11 @@
 package com.github.alexandrenavarro.javafxbootsample.referential;
 
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.builder.ButtonBuilder;
 import javafx.scene.control.builder.TableViewBuilder;
-import javafx.scene.layout.builder.StackPaneBuilder;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 import javafx.scene.layout.builder.VBoxBuilder;
 import lombok.Getter;
 import org.controlsfx.control.MaskerPane;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 public class MarketView {
 
     @Getter
-    private final Node view;
+    private final VBox view;
 
     @Getter
     private final Button searchButton = ButtonBuilder.create()
@@ -46,12 +46,12 @@ public class MarketView {
         this.view = VBoxBuilder.create()
                 .children(
                         searchButton,
-                        StackPaneBuilder.create()
-                                .children(
-                                        tableView,
-                                        maskerPane)
-                                .build()
-                ).build();
+                        tableView
+                )
+                .build();
+        VBox.setVgrow(tableView, Priority.ALWAYS);
+
+
     }
 
 }

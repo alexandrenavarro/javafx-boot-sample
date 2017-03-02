@@ -15,7 +15,8 @@ public class BottomStatusBarView {
     private final StatusBar view;
 
     public BottomStatusBarView() {
-        view = StatusBarBuilder.create().build();
+        view = StatusBarBuilder.create().
+                build();
     }
 
 }
