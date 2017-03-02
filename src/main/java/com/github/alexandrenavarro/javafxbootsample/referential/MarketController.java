@@ -1,11 +1,14 @@
 package com.github.alexandrenavarro.javafxbootsample.referential;
 
 import com.github.alexandrenavarro.javafxbootsample.statusbar.BottomStatusBarView;
+import com.github.alexandrenavarro.javafxbootsample.statusbar.TaskStatusView;
+import javafx.concurrent.Task;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Created by anavarro on 26/02/17.
@@ -16,11 +19,13 @@ public class MarketController {
 
     private final MarketView marketView;
     private final BottomStatusBarView bottomStatusBarView;
+    private final TaskStatusView taskStatusView;
 
     @Inject
-    public MarketController(final MarketView marketView, final BottomStatusBarView bottomStatusBarView) {
+    public MarketController(final MarketView marketView, final BottomStatusBarView bottomStatusBarView, TaskStatusView taskStatusView) {
         this.marketView = marketView;
         this.bottomStatusBarView = bottomStatusBarView;
+        this.taskStatusView = taskStatusView;
     }
 
     @PostConstruct
@@ -92,13 +97,32 @@ public class MarketController {
 //                }
 //                return null;
 //            }
-//        };
-//
-//
-//        this.bottomStatusBarView.getView().progressProperty().bind(task.progressProperty());
-//        this.bottomStatusBarView.getView().textProperty().bind(task.messageProperty());
-//
-//        CompletableFuture.runAsync(() -> task.run());
+
+        final Task<Void> task = new Task<Void>() {
+            @Override
+            protected Void call() {
+
+                for (int i = 0; i < 5; i++) {
+                    try {
+                        Thread.sleep(1000);
+                        updateProgress(i, 5 - 1);
+                    } catch (InterruptedException e) {
+                        log.info("Error e:", e);
+                    }
+                }
+                updateMessage("Countries retrieved.");
+                return null;
+            }
+
+        };
+
+
+        this.bottomStatusBarView.getView().progressProperty().bind(task.progressProperty());
+        this.bottomStatusBarView.getView().textProperty().bind(task.messageProperty());
+        this.taskStatusView.getView().getTasks().add(task);
+
+
+        CompletableFuture.runAsync(() -> task.run());
     }
 
 }
