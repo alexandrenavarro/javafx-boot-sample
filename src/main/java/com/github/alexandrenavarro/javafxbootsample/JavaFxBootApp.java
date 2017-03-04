@@ -21,21 +21,21 @@ public class JavaFxBootApp extends Application {
 
     @Override
     public void init() throws Exception {
-        this.applicationContext = SpringApplication.run(getClass(), args);
+
     }
 
     @Override
     public void start(final Stage stage) {
+        this.applicationContext = SpringApplication.run(getClass(), args);
         setUserAgentStylesheet(STYLESHEET_MODENA);
         stage.setScene(new Scene(this.applicationContext.getBean(MainView.class).getView(), 1200, 1000));
         stage.show();
 
-        // TODO Menu shortcut
-        // TODO Preference (fix problem ioc)
-        // TODO add builder for all ControlfX (Inset)
         // TODO add builder for all RichText
-        // TODO animation menu
         // TODO Splash screen
+        // TODO animation menu
+        // TODO logs view
+
 
     }
 

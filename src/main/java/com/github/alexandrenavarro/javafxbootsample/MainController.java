@@ -1,5 +1,6 @@
 package com.github.alexandrenavarro.javafxbootsample;
 
+import com.github.alexandrenavarro.javafxbootsample.content.ContentView;
 import com.github.alexandrenavarro.javafxbootsample.preferences.UserPref;
 import com.github.alexandrenavarro.javafxbootsample.preferences.UserPrefBeanInfo;
 import com.github.alexandrenavarro.javafxbootsample.preferences.UserPrefView;
@@ -9,11 +10,14 @@ import com.github.alexandrenavarro.javafxbootsample.request.RequestView;
 import com.github.alexandrenavarro.javafxbootsample.scenario.ScenarioView;
 import com.github.alexandrenavarro.javafxbootsample.statusbar.BottomStatusBarView;
 import com.github.alexandrenavarro.javafxbootsample.statusbar.TaskStatusView;
+import com.github.alexandrenavarro.javafxbootsample.statusbar.TopStatusBarView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import lombok.extern.slf4j.Slf4j;
 import org.controlsfx.control.PropertySheet;
-import org.controlsfx.control.action.ActionMap;
 import org.controlsfx.property.BeanProperty;
 import org.springframework.stereotype.Component;
 
@@ -36,10 +40,12 @@ public class MainController {
     private final UserPrefView userPrefView;
     private final TaskStatusView taskStatusView;
     private final BottomStatusBarView bottomStatusBarView;
+    private final TopStatusBarView topStatusBarView;
+    private final ContentView contentView;
     private final UserPref userPref;
 
 
-    public MainController(final MainView mainView, final MarketView marketView, final UnderlyingView underlyingView, final ScenarioView scenarioView, final RequestView requestView, final UserPrefView userPrefView, TaskStatusView taskStatusView, BottomStatusBarView bottomStatusBarView, final UserPref userPref) {
+    public MainController(final MainView mainView, final MarketView marketView, final UnderlyingView underlyingView, final ScenarioView scenarioView, final RequestView requestView, final UserPrefView userPrefView, TaskStatusView taskStatusView, BottomStatusBarView bottomStatusBarView, TopStatusBarView topStatusBarView, ContentView contentView, final UserPref userPref) {
         this.mainView = mainView;
         this.marketView = marketView;
         this.underlyingView = underlyingView;
@@ -48,8 +54,9 @@ public class MainController {
         this.userPrefView = userPrefView;
         this.taskStatusView = taskStatusView;
         this.bottomStatusBarView = bottomStatusBarView;
+        this.topStatusBarView = topStatusBarView;
+        this.contentView = contentView;
         this.userPref = userPref;
-        ActionMap.register(this);
     }
 
     @PostConstruct
@@ -62,27 +69,14 @@ public class MainController {
         this.mainView.getMenuAccordion().setExpandedPane(this.mainView.getMenuAccordion().getPanes().get(0));
 
         //TODO improve it with a animation
-        this.mainView.getHamburgerLabel().setOnMouseClicked(e -> showOrHideMenu());
+        this.topStatusBarView.getHamburgerLabel().setOnMouseClicked(e -> showOrHideMenu());
 
-        this.mainView.getFindMarketHyperlink().setOnMouseClicked(e -> {
-            showMarketView();
-        });
+        this.mainView.getFindMarketHyperlink().setOnMouseClicked(e -> showMarketView());
+        this.mainView.getFindUnderlyingHyperlink().setOnMouseClicked(e -> showUnderlyingView());
+        this.mainView.getLoadScenarioHyperlink().setOnMouseClicked(e -> showScenarioView());
+        this.mainView.getFindRequestHyperlink().setOnMouseClicked(e -> showRequestView());
 
-        this.mainView.getFindUnderlyingHyperlink().setOnMouseClicked(e -> {
-            showUnderlyingView();
-        });
-
-        this.mainView.getLoadScenarioHyperlink().setOnMouseClicked(e -> {
-            showScenarioView();
-        });
-
-        this.mainView.getFindRequestHyperlink().setOnMouseClicked(e -> {
-            showRequestView();
-        });
-
-        this.bottomStatusBarView.getTaskInProgressButton().setOnMouseClicked(e -> {
-            showTaskStatusView();
-        });
+        this.bottomStatusBarView.getTasksInProgressLabel().setOnMouseClicked(e -> showTaskStatusView());
 
         // Init Pref
         final ObservableList<PropertySheet.Item> list = FXCollections.observableArrayList();
@@ -91,45 +85,53 @@ public class MainController {
             list.add(new BeanProperty(userPref, p));
         }
         userPrefView.getPropertySheet().getItems().setAll(list);
-        mainView.getGearLabel().setOnMouseClicked(e -> userPrefView.getView().show(mainView.getGearLabel()));
+        this.topStatusBarView.getGearLabel().setOnMouseClicked(e -> showPreferences());
 
 
-//        this.mainView.getView()
-//                .setOnKeyPressed(e -> {
-//                    if (e.isControlDown() && e.getCode() == KeyCode.M) {
-//
-//                    }
-//
-//                });
+        this.mainView.getView()
+                .setOnKeyPressed(e -> {
+                    if (this.topStatusBarView.getCtrlMKeyCombination().match(e)) {
+                        showOrHideMenu();
+                    } else if (this.topStatusBarView.getCtrlPKeyCombination().match(e)) {
+                        showPreferences();
+                    } else if (this.bottomStatusBarView.getCtrlTKeyCombination().match(e)) {
+                        showTaskStatusView();
+                    } else if (this.mainView.getCtrlRKeyCombination().match(e)) {
+                        showRequestView();
+                    } else if (this.mainView.getCtrlSKeyCombination().match(e)) {
+                        showScenarioView();
+                    } else if (this.mainView.getCtrlUKeyCombination().match(e)) {
+                        showUnderlyingView();
+                    } else if (this.mainView.getCtrlKKeyCombination().match(e)) {
+                        showMarketView();
+                    }
 
+                });
+
+
+        final KeyCombination keyComb1 = new KeyCodeCombination(KeyCode.R, KeyCombination.CONTROL_DOWN);
     }
 
-    @org.controlsfx.control.action.ActionProxy(text = "Show Request", accelerator = "ctrl+R")
     private void showRequestView() {
-        mainView.getContent().getChildren().setAll(requestView.getView());
+        this.contentView.getContent().getChildren().setAll(requestView.getView());
     }
 
-    @org.controlsfx.control.action.ActionProxy(text = "Show Scenario", accelerator = "ctrl+S")
     private void showScenarioView() {
-        mainView.getContent().getChildren().setAll(scenarioView.getView());
+        this.contentView.getContent().getChildren().setAll(scenarioView.getView());
     }
 
-    @org.controlsfx.control.action.ActionProxy(text = "Show Underlying", accelerator = "ctrl+U")
     private void showUnderlyingView() {
-        mainView.getContent().getChildren().setAll(underlyingView.getView());
+        this.contentView.getContent().getChildren().setAll(underlyingView.getView());
     }
 
-    @org.controlsfx.control.action.ActionProxy(text = "Show Market", accelerator = "ctrl+K")
     private void showMarketView() {
-        mainView.getContent().getChildren().setAll(marketView.getView());
+        this.contentView.getContent().getChildren().setAll(marketView.getView(), this.contentView.getMaskerPane());
     }
 
-    @org.controlsfx.control.action.ActionProxy(text = "Show Task", accelerator = "ctrl+T")
     private void showTaskStatusView() {
-        mainView.getContent().getChildren().setAll(taskStatusView.getView());
+        taskStatusView.getView().show(this.bottomStatusBarView.getTasksInProgressLabel());
     }
 
-    @org.controlsfx.control.action.ActionProxy(text = "Show Market", accelerator = "ctrl+M")
     private void showOrHideMenu() {
         if (this.mainView.getMenuAccordion().isVisible()) {
             mainView.getMenuAccordion().setVisible(false);
@@ -138,6 +140,10 @@ public class MainController {
             mainView.getMenuAccordion().setVisible(true);
             mainView.getView().setLeft(mainView.getMenuAccordion());
         }
+    }
+
+    private void showPreferences() {
+        userPrefView.getView().show(this.topStatusBarView.getGearLabel());
     }
 
 

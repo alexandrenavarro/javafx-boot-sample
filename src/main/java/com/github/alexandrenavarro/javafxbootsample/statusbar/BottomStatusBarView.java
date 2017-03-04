@@ -1,7 +1,13 @@
 package com.github.alexandrenavarro.javafxbootsample.statusbar;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.builder.ButtonBuilder;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import de.jensd.fx.glyphs.fontawesome.utils.FontAwesomeIconFactory;
+import javafx.scene.control.Label;
+import javafx.scene.control.builder.LabelBuilder;
+import javafx.scene.control.builder.TooltipBuilder;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import lombok.Getter;
 import org.controlsfx.control.StatusBar;
 import org.controlsfx.control.builder.StatusBarBuilder;
@@ -17,13 +23,17 @@ public class BottomStatusBarView {
     private final StatusBar view;
 
     @Getter
-    private final Button taskInProgressButton = ButtonBuilder.create()
-            .text("Tasks in Progress")
+    private final KeyCombination ctrlTKeyCombination = new KeyCodeCombination(KeyCode.T, KeyCombination.CONTROL_DOWN);
+
+    @Getter
+    private final Label tasksInProgressLabel = LabelBuilder.create()
+            .graphic(FontAwesomeIconFactory.get().createIcon(FontAwesomeIcon.TASKS))
+            .tooltip(TooltipBuilder.create().text(ctrlTKeyCombination.getDisplayText()).build())
             .build();
 
     public BottomStatusBarView() {
         view = StatusBarBuilder.create()
-                .rightItems(taskInProgressButton)
+                .rightItems(tasksInProgressLabel)
                 .build();
     }
 

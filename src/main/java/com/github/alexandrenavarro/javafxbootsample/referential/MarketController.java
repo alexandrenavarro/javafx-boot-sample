@@ -1,5 +1,6 @@
 package com.github.alexandrenavarro.javafxbootsample.referential;
 
+import com.github.alexandrenavarro.javafxbootsample.content.ContentView;
 import com.github.alexandrenavarro.javafxbootsample.statusbar.BottomStatusBarView;
 import com.github.alexandrenavarro.javafxbootsample.statusbar.TaskStatusView;
 import javafx.concurrent.Task;
@@ -20,12 +21,14 @@ public class MarketController {
     private final MarketView marketView;
     private final BottomStatusBarView bottomStatusBarView;
     private final TaskStatusView taskStatusView;
+    private final ContentView contentView;
 
     @Inject
-    public MarketController(final MarketView marketView, final BottomStatusBarView bottomStatusBarView, TaskStatusView taskStatusView) {
+    public MarketController(final MarketView marketView, final BottomStatusBarView bottomStatusBarView, TaskStatusView taskStatusView, ContentView contentView) {
         this.marketView = marketView;
         this.bottomStatusBarView = bottomStatusBarView;
         this.taskStatusView = taskStatusView;
+        this.contentView = contentView;
     }
 
     @PostConstruct
@@ -111,6 +114,7 @@ public class MarketController {
                     }
                 }
                 updateMessage("Countries retrieved.");
+                MarketController.this.contentView.getMaskerPane().setVisible(false);
                 return null;
             }
 
@@ -119,8 +123,10 @@ public class MarketController {
 
         this.bottomStatusBarView.getView().progressProperty().bind(task.progressProperty());
         this.bottomStatusBarView.getView().textProperty().bind(task.messageProperty());
-        this.taskStatusView.getView().getTasks().add(task);
-
+        this.taskStatusView.getTaskProgressView().getTasks().add(task);
+        this.contentView.getMaskerPane().setVisible(true);
+        this.contentView.getMaskerPane().progressProperty().bind(task.progressProperty());
+        this.contentView.getMaskerPane().textProperty().bind(task.messageProperty());
 
         CompletableFuture.runAsync(() -> task.run());
     }
