@@ -16,6 +16,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.builder.BorderPaneBuilder;
 import javafx.scene.layout.builder.VBoxBuilder;
 import lombok.Getter;
+import org.controlsfx.control.HiddenSidesPane;
+import org.controlsfx.control.builder.HiddenSidesPaneBuilder;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
@@ -86,6 +88,9 @@ public class MainView {
     @Getter
     private final Accordion menuAccordion;
 
+    @Getter
+    private final HiddenSidesPane hiddenSidesPane;
+
     @Inject
     public MainView(final BottomStatusBarView bottomStatusBarView, TopStatusBarView topStatusBarView, ContentView contentView) {
         this.bottomStatusBarView = bottomStatusBarView;
@@ -117,10 +122,21 @@ public class MainView {
                                         .build())
                                 .build())
                 .build();
+
+        this.hiddenSidesPane =
+                HiddenSidesPaneBuilder.create()
+                        .left(this.menuAccordion)
+                        .content(this.contentView.getView())
+                        .build();
+
+
         this.view = BorderPaneBuilder.create()
                 .left(this.menuAccordion)
                 .top(this.topStatusBarView.getView())
                 .bottom(this.bottomStatusBarView.getView())
+//                .center(StackPaneBuilder.create()
+//                        .children(this.hiddenSidesPane).build()
+//                )
                 .center(this.contentView.getView())
                 .build();
     }

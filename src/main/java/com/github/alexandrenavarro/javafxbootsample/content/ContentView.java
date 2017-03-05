@@ -33,6 +33,7 @@ public class ContentView {
             .content(content)
             .build();
 
+
     public ContentView() {
 
     }

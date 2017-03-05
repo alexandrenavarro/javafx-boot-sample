@@ -17,6 +17,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Side;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
@@ -96,7 +97,7 @@ public class MainController {
         this.mainView.getView()
                 .setOnKeyPressed(e -> {
                     if (this.topStatusBarView.getCtrlMKeyCombination().match(e)) {
-                        showOrHideMenu();
+                        showOrHideMenu2();
                     } else if (this.topStatusBarView.getCtrlPKeyCombination().match(e)) {
                         showPreferences();
                     } else if (this.bottomStatusBarView.getCtrlTKeyCombination().match(e)) {
@@ -135,6 +136,15 @@ public class MainController {
 
     private void showTaskStatusView() {
         taskStatusView.getView().show(this.bottomStatusBarView.getTasksInProgressLabel());
+    }
+
+    private void showOrHideMenu2() {
+        if (this.mainView.getHiddenSidesPane().getPinnedSide() != Side.LEFT) {
+            this.mainView.getHiddenSidesPane().setPinnedSide(Side.LEFT);
+        } else {
+            this.mainView.getHiddenSidesPane().setPinnedSide(null);
+
+        }
     }
 
     private void showOrHideMenu() {
