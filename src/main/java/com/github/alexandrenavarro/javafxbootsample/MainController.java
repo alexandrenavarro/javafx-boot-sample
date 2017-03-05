@@ -11,11 +11,16 @@ import com.github.alexandrenavarro.javafxbootsample.scenario.ScenarioView;
 import com.github.alexandrenavarro.javafxbootsample.statusbar.BottomStatusBarView;
 import com.github.alexandrenavarro.javafxbootsample.statusbar.TaskStatusView;
 import com.github.alexandrenavarro.javafxbootsample.statusbar.TopStatusBarView;
+import javafx.animation.Animation;
+import javafx.animation.Transition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
+import javafx.util.Duration;
 import lombok.extern.slf4j.Slf4j;
 import org.controlsfx.control.PropertySheet;
 import org.controlsfx.property.BeanProperty;
@@ -141,6 +146,72 @@ public class MainController {
             mainView.getView().setLeft(mainView.getMenuAccordion());
         }
     }
+
+    private void showOrHideMenuWithAnimation() {
+
+        // create an animation to hide sidebar.
+        final double startWidth = mainView.getMenuAccordion().getWidth();
+        final double startContentWidth = mainView.getContentView().getView().getWidth();
+        final Animation hideSidebar = new Transition() {
+            {
+                setCycleDuration(Duration.millis(250));
+            }
+
+            protected void interpolate(double frac) {
+                final double curWidth = startWidth * (1.0 - frac);
+                final double curWidth2 = startWidth * frac;
+                mainView.getMenuAccordion().setTranslateX(-startWidth + curWidth);
+                mainView.getContentView().getView().setTranslateX(-startWidth + curWidth);
+                mainView.getContentView().getView().setPrefWidth(startContentWidth + curWidth2);
+                mainView.getContentView().getView().setMinWidth(startContentWidth + curWidth2);
+                mainView.getContentView().getView().setMaxWidth(startContentWidth + curWidth2);
+//                mainView.getTopStatusBarView().getView().setPrefWidth(startContentWidth + startWidth);
+//                mainView.getTopStatusBarView().getView().setMinWidth(startContentWidth + startWidth);
+//                mainView.getTopStatusBarView().getView().setMaxWidth(startContentWidth + startWidth);
+            }
+        };
+        hideSidebar.onFinishedProperty().set(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                mainView.getMenuAccordion().setVisible(false);
+            }
+        });
+
+        // create an animation to show a sidebar.
+        final Animation showSidebar = new Transition() {
+            {
+                setCycleDuration(Duration.millis(250));
+            }
+
+            protected void interpolate(double frac) {
+                final double curWidth = startWidth * frac;
+                mainView.getMenuAccordion().setTranslateX(-startWidth + curWidth);
+                mainView.getContentView().getView().setTranslateX(-startWidth + curWidth);
+                mainView.getContentView().getView().setPrefWidth(startContentWidth - curWidth);
+                mainView.getContentView().getView().setMinWidth(startContentWidth - curWidth);
+                mainView.getContentView().getView().setMaxWidth(startContentWidth - curWidth);
+//                mainView.getTopStatusBarView().getView().setPrefWidth(startContentWidth + startWidth);
+//                mainView.getTopStatusBarView().getView().setMinWidth(startContentWidth + startWidth);
+//                mainView.getTopStatusBarView().getView().setMaxWidth(startContentWidth + startWidth);
+            }
+        };
+        showSidebar.onFinishedProperty().set(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+            }
+        });
+        if (showSidebar.statusProperty().get() == Animation.Status.STOPPED && hideSidebar.statusProperty().get() == Animation.Status.STOPPED) {
+            if (mainView.getMenuAccordion().isVisible()) {
+                hideSidebar.play();
+            } else {
+                mainView.getMenuAccordion().setVisible(true);
+                showSidebar.play();
+            }
+        }
+
+    }
+
+
 
     private void showPreferences() {
         userPrefView.getView().show(this.topStatusBarView.getGearLabel());

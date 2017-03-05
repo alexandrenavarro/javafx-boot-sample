@@ -118,7 +118,7 @@ public class MainView {
                                 .build())
                 .build();
         this.view = BorderPaneBuilder.create()
-                .left(menuAccordion)
+                .left(this.menuAccordion)
                 .top(this.topStatusBarView.getView())
                 .bottom(this.bottomStatusBarView.getView())
                 .center(this.contentView.getView())
