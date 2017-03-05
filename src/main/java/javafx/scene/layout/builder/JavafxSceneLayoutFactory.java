@@ -1,15 +1,12 @@
 package javafx.scene.layout.builder;
 
-import javafx.scene.control.Accordion;
-import javafx.scene.control.Button;
-import javafx.scene.control.TitledPane;
 import javafx.scene.layout.*;
 import net.karneim.pojobuilder.GeneratePojoBuilder;
 
 /**
  * Created by anavarro on 25/02/17.
  */
-public class JavaFxLayoutFactory {
+public class JavafxSceneLayoutFactory {
 
     @GeneratePojoBuilder(withSetterNamePattern = "*", intoPackage = "*.builder", withFactoryMethod = "create", withGenerationGap = true)
     public static AnchorPane createAnchorPane() {

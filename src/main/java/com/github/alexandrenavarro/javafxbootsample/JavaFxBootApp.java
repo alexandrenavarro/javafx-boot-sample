@@ -64,7 +64,28 @@ public class JavaFxBootApp extends Application {
         CompletableFuture.runAsync(() -> task.run());
 
         // TODO add builder for all Javafx
-        // TODO animation menu
+        // javafx.animation
+        // javafx.beans.property.adapter
+        // javafx.geometry
+        // javafx.scene
+        // javafx.scene.canvas
+        // javafx.scene.chart
+        // javafx.scene.control
+        // javafx.scene.control.cell
+        // javafx.scene.effect
+        // javafx.scene.image
+        // javafx.scene.layout
+        // javafx.scene.media
+        // javafx.scene.paint
+        // javafx.scene.shape
+        // javafx.scene.text
+        // javafx.scene.transform
+        // javafx.scene.web
+        // javafx.stage
+        //
+
+
+
         // TODO logs view
 
 

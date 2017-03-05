@@ -1,16 +1,13 @@
 package javafx.scene.control.builder;
 
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import net.karneim.pojobuilder.GeneratePojoBuilder;
 
 
 /**
  * Created by anavarro on 25/02/17.
  */
-public class JavaFxControlFactory {
+public class JavafxSceneControlFactory {
 
     @GeneratePojoBuilder(withSetterNamePattern = "*", intoPackage = "*.builder", withFactoryMethod = "create", withGenerationGap = true)
     public static TitledPane createTitledPane() {
