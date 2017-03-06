@@ -2,7 +2,9 @@ package com.github.alexandrenavarro.javafxbootsample.referential;
 
 import com.github.alexandrenavarro.javafxbootsample.content.ContentView;
 import com.github.alexandrenavarro.javafxbootsample.statusbar.BottomStatusBarView;
+import com.github.alexandrenavarro.javafxbootsample.statusbar.GlobalStatusView;
 import com.github.alexandrenavarro.javafxbootsample.statusbar.TaskStatusView;
+import com.github.alexandrenavarro.javafxbootsample.util.GenericTask;
 import javafx.concurrent.Task;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -22,13 +24,15 @@ public class MarketController {
     private final BottomStatusBarView bottomStatusBarView;
     private final TaskStatusView taskStatusView;
     private final ContentView contentView;
+    private final GlobalStatusView globalStatusView;
 
     @Inject
-    public MarketController(final MarketView marketView, final BottomStatusBarView bottomStatusBarView, TaskStatusView taskStatusView, ContentView contentView) {
+    public MarketController(final MarketView marketView, final BottomStatusBarView bottomStatusBarView, TaskStatusView taskStatusView, ContentView contentView, GlobalStatusView globalStatusView) {
         this.marketView = marketView;
         this.bottomStatusBarView = bottomStatusBarView;
         this.taskStatusView = taskStatusView;
         this.contentView = contentView;
+        this.globalStatusView = globalStatusView;
     }
 
     @PostConstruct
@@ -101,34 +105,47 @@ public class MarketController {
 //                return null;
 //            }
 
-        final Task<Void> task = new Task<Void>() {
-            @Override
-            protected Void call() {
+//        final Task<Void> task = new Task<Void>() {
+//            @Override
+//            protected Void call() {
+//
+//                for (int i = 0; i < 5; i++) {
+//                    try {
+//                        Thread.sleep(1000);
+//                        updateProgress(i, 5 - 1);
+//                    } catch (InterruptedException e) {
+//                        log.info("Error e:", e);
+//                    }
+//                }
+//                updateMessage("Countries retrieved.");
+//                MarketController.this.contentView.getMaskerPane().setVisible(false);
+//                return null;
+//            }
+//
+//        };
 
-                for (int i = 0; i < 5; i++) {
-                    try {
-                        Thread.sleep(1000);
-                        updateProgress(i, 5 - 1);
-                    } catch (InterruptedException e) {
-                        log.info("Error e:", e);
-                    }
+        final Task<Void> task = new GenericTask<Void>("Start", "Succeed", "Failed", globalStatusView) {
+            @Override
+            protected Void call() throws Exception {
+                for (int i = 0; i < 1000; i++) {
+                    Thread.sleep(10);
+                    updateProgress(i, 1000);
                 }
-                updateMessage("Countries retrieved.");
-                MarketController.this.contentView.getMaskerPane().setVisible(false);
                 return null;
             }
-
         };
 
 
-        this.bottomStatusBarView.getView().progressProperty().bind(task.progressProperty());
-        this.bottomStatusBarView.getView().textProperty().bind(task.messageProperty());
-        this.taskStatusView.getTaskProgressView().getTasks().add(task);
-        this.contentView.getMaskerPane().setVisible(true);
-        this.contentView.getMaskerPane().progressProperty().bind(task.progressProperty());
-        this.contentView.getMaskerPane().textProperty().bind(task.messageProperty());
+//        this.bottomStatusBarView.getView().progressProperty().bind(task.progressProperty());
+//        this.bottomStatusBarView.getView().textProperty().bind(task.messageProperty());
+//        this.taskStatusView.getTaskProgressView().getTasks().add(task);
+//        this.contentView.getMaskerPane().setVisible(true);
+//        this.contentView.getMaskerPane().progressProperty().bind(task.progressProperty());
+//        this.contentView.getMaskerPane().textProperty().bind(task.messageProperty());
 
         CompletableFuture.runAsync(() -> task.run());
+
+
     }
 
 }
