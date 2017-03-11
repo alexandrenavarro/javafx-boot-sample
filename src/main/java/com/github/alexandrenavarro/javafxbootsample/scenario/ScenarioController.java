@@ -1,6 +1,5 @@
 package com.github.alexandrenavarro.javafxbootsample.scenario;
 
-import org.fxmisc.flowless.VirtualizedScrollPane;
 import org.fxmisc.richtext.CodeArea;
 import org.fxmisc.richtext.LineNumberFactory;
 import org.fxmisc.richtext.model.StyleSpans;
@@ -20,7 +19,7 @@ import java.util.regex.Pattern;
 public class ScenarioController {
 
     private static final String[] KEYWORDS = new String[]{"given a sales", "given a trader",
-            "then wait status", "when the sales send a rfq", "send price", "send order accepted", "catch", "char", "class", "const",
+            "then wait scenarioStatus", "when the sales send a rfq", "send price", "send order accepted", "catch", "char", "class", "const",
             "continue", "default", "do", "double", "else", "enum", "extends", "final",
             "finally", "float", "for", "goto", "if", "implements", "import", "instanceof",
             "int", "interface", "long", "native", "new", "package", "private",
@@ -50,17 +49,17 @@ public class ScenarioController {
             "when the sales send a rfq {\n" +
             "}\n" +
             "\n" +
-            "then wait status \"NEW\"\n" +
-            "then wait status \"BEING-PRICED\"\n" +
+            "then wait scenarioStatus \"NEW\"\n" +
+            "then wait scenarioStatus \"BEING-PRICED\"\n" +
             "\n" +
             "send price {\n" +
             "}\n" +
             "\n" +
-            "then wait status \"PRICED\"\n" +
+            "then wait scenarioStatus \"PRICED\"\n" +
             "send order accepted {\n" +
             "}\n" +
             "\n" +
-            "then wait status \"ORDER-ACCEPTED\"\n";
+            "then wait scenarioStatus \"ORDER-ACCEPTED\"\n";
 
 
     private final ScenarioView scenarioView;
@@ -72,9 +71,9 @@ public class ScenarioController {
 
     @PostConstruct
     public void initialize() {
-        final CodeArea codeArea = this.scenarioView.getView();
+        final CodeArea codeArea = this.scenarioView.getCodeArea();
         codeArea.setParagraphGraphicFactory(LineNumberFactory.get(codeArea));
-        final VirtualizedScrollPane<CodeArea> vCodeArea = new VirtualizedScrollPane<>(codeArea);
+        //final VirtualizedScrollPane<CodeArea> vCodeArea = new VirtualizedScrollPane<>(codeArea);
         codeArea.richChanges().filter(ch -> !ch.getInserted().equals(ch.getRemoved())) // XXX
                 .subscribe(change -> {
                     codeArea.setStyleSpans(0, computeHighlighting(codeArea.getText()));

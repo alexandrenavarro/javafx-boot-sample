@@ -45,7 +45,7 @@ public class JavaFxConfig {
 //                log.info("Read from: {}, userPref: ", outputFileName, pref);
 //                return pref;
 //            } catch (IOException e) {
-//                log.error("Failed to load user pref", e);
+//                log.scenarioError("Failed to load user pref", e);
 //            }
 //        }
 

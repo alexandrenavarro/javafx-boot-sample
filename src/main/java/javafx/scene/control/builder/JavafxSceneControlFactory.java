@@ -164,5 +164,10 @@ public class JavafxSceneControlFactory {
         return new TreeTableColumn<S, T>();
     }
 
+    @GeneratePojoBuilder(withSetterNamePattern = "*", intoPackage = "*.builder", withFactoryMethod = "create", withGenerationGap = true)
+    public static TextArea createTextArea() {
+        return new TextArea();
+    }
+
 
 }
