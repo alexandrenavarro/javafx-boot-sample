@@ -1,4 +1,4 @@
-package com.github.alexandrenavarro.javafxbootsample.scenario.impl;
+package com.github.alexandrenavarro.javafxbootsample.scenario.model;
 
 /**
  * Created by anavarro on 11/03/17.

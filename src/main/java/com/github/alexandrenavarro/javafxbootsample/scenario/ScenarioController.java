@@ -1,5 +1,7 @@
 package com.github.alexandrenavarro.javafxbootsample.scenario;
 
+import javafx.stage.FileChooser;
+import lombok.extern.slf4j.Slf4j;
 import org.fxmisc.richtext.CodeArea;
 import org.fxmisc.richtext.LineNumberFactory;
 import org.fxmisc.richtext.model.StyleSpans;
@@ -7,6 +9,10 @@ import org.fxmisc.richtext.model.StyleSpansBuilder;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.regex.Matcher;
@@ -16,6 +22,7 @@ import java.util.regex.Pattern;
  * Created by anavarro on 26/02/17.
  */
 @Component
+@Slf4j
 public class ScenarioController {
 
     private static final String[] KEYWORDS = new String[]{"given a sales", "given a trader",
@@ -81,6 +88,59 @@ public class ScenarioController {
         codeArea.replaceText(0, 0, sampleCode);
         codeArea.getStylesheets()
                 .add(getClass().getResource("/java-keywords.css").toExternalForm());
+
+        this.scenarioView.getOpenButton().setOnAction(e -> {
+            openScenario();
+        });
+
+        this.scenarioView.getSaveButton().setOnAction(e -> {
+            saveScenario();
+        });
+
+        this.scenarioView.getView()
+                .setOnKeyPressed(e -> {
+                    if (this.scenarioView.getCtrlOKeyCombination().match(e)) {
+                        openScenario();
+                    } else if (this.scenarioView.getCtrlSKeyCombination().match(e)) {
+                        saveScenario();
+                    }
+                });
+
+
+        this.scenarioView.getStopButton().disarm();
+
+    }
+
+    private void openScenario() {
+        final FileChooser fileChooser = new FileChooser();
+        final FileChooser.ExtensionFilter extFilter =
+                new FileChooser.ExtensionFilter("SCenario Onyx (*.sco)", "*.sco");
+        fileChooser.getExtensionFilters().add(extFilter);
+        final File file = fileChooser.showOpenDialog(null);
+        if (file != null) {
+            try {
+                this.scenarioView.getCodeArea().replaceText(new String(Files.readAllBytes(file.toPath())));
+            } catch (IOException e1) {
+                log.warn("Error e:{}", e1);
+            }
+        }
+        log.info("file:{}", file);
+    }
+
+    private void saveScenario() {
+        final FileChooser fileChooser = new FileChooser();
+        final FileChooser.ExtensionFilter extFilter =
+                new FileChooser.ExtensionFilter("SCenario Onyx (*.sco)", "*.sco");
+        fileChooser.getExtensionFilters().add(extFilter);
+        final File file = fileChooser.showSaveDialog(null);
+
+        if (file != null) {
+            try {
+                Files.write(file.toPath(), this.scenarioView.getCodeArea().getText().getBytes(), StandardOpenOption.CREATE);
+            } catch (IOException e1) {
+                log.warn("Error e:{}", e1);
+            }
+        }
     }
 
     private static StyleSpans<Collection<String>> computeHighlighting(String text) {

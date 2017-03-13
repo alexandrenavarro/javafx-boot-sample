@@ -1,4 +1,4 @@
-package com.github.alexandrenavarro.javafxbootsample.scenario.impl;
+package com.github.alexandrenavarro.javafxbootsample.scenario.model;
 
 import lombok.Builder;
 import lombok.Data;

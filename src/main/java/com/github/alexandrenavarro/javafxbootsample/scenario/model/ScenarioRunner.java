@@ -1,4 +1,4 @@
-package com.github.alexandrenavarro.javafxbootsample.scenario.impl;
+package com.github.alexandrenavarro.javafxbootsample.scenario.model;
 
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;

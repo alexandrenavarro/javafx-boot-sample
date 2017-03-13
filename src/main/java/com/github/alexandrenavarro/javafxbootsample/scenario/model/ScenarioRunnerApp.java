@@ -1,4 +1,4 @@
-package com.github.alexandrenavarro.javafxbootsample.scenario.impl;
+package com.github.alexandrenavarro.javafxbootsample.scenario.model;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
@@ -32,6 +32,5 @@ public class ScenarioRunnerApp implements CommandLineRunner {
     // TODO grammar, maybe add a scenario name (or file name)
     // Repackage in one jar
     // Parse file
-    // Improve Scenario View (Open file / Save File)
     // Improve Generic Task
 }

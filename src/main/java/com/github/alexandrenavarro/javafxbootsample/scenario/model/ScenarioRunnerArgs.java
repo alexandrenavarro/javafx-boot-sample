@@ -1,4 +1,4 @@
-package com.github.alexandrenavarro.javafxbootsample.scenario.impl;
+package com.github.alexandrenavarro.javafxbootsample.scenario.model;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

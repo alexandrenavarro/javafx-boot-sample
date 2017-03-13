@@ -8,6 +8,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextAreaBuilder;
 import javafx.scene.control.builder.ButtonBuilder;
+import javafx.scene.control.builder.TooltipBuilder;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -28,13 +32,22 @@ public class ScenarioView {
     private final VBox view;
 
     @Getter
+    private final KeyCombination ctrlOKeyCombination = new KeyCodeCombination(KeyCode.O, KeyCombination.CONTROL_DOWN);
+
+    @Getter
     private final Button openButton = ButtonBuilder.create()
             .graphic(FontAwesomeIconFactory.get().createIcon(FontAwesomeIcon.FOLDER_OPEN))
+            .tooltip(TooltipBuilder.create().text(ctrlOKeyCombination.getDisplayText()).build())
             .build();
+
+
+    @Getter
+    private final KeyCombination ctrlSKeyCombination = new KeyCodeCombination(KeyCode.S, KeyCombination.CONTROL_DOWN);
 
     @Getter
     private final Button saveButton = ButtonBuilder.create()
             .graphic(FontAwesomeIconFactory.get().createIcon(FontAwesomeIcon.SAVE))
+            .tooltip(TooltipBuilder.create().text(ctrlSKeyCombination.getDisplayText()).build())
             .build();
 
     @Getter
